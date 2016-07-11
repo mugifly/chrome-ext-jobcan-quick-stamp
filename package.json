@@ -1,0 +1,22 @@
+{
+  "name": "chrome-ext-jobcan-quick-stamp",
+  "version": "1.0.0",
+  "description": "Chrome extension for make a stamp on JobCan (unofficial)",
+  "main": "background.js",
+  "scripts": {
+    "pretest": "node_modules/eslint/bin/eslint.js .",
+    "test": "echo \"Warning: no test specified\""
+  },
+  "author": "Masanori Ohgita",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^2.13.1"
+  },
+  "dependencies": {
+    "jquery": "^3.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mugifly/chrome-ext-jobcan-quick-stamp.git"
+  }
+}

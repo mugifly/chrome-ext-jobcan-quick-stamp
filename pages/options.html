@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ja">
+	<head>
+
+		<meta charset="utf-8">
+
+		<title>Options for jobcan-quick-stamp</title>
+
+		<style>
+
+			/* Page */
+
+			body {
+				background-color: #fefefe;
+				color: #202020;
+				margin: 2rem;
+				font-size: 12pt;
+			}
+
+			h2, h3 {
+				margin-left: 1rem;
+			}
+
+			p {
+				margin-left: 1.5rem;
+			}
+
+			p.small {
+				font-size: 10pt;
+			}
+
+			hr {
+				border: 0.5px solid #e0e0e0;
+				margin-top: 2rem;
+				margin-bottom: 2rem;
+			}
+
+			/* Submit button */
+
+			input[type="submit"] {
+				background-color: #3498db;
+				border: none;
+				color: #fefefe;
+				font-weight: bolder;
+				font-size: 13pt;
+				padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+			}
+
+			input[type="submit"]:hover {
+				cursor: pointer;
+				background-color: #2980b9;
+			}
+
+			/* Result information */
+
+			#result {
+				font-weight: bolder;
+				margin-right: 2rem;
+			}
+
+			#result.success {
+				color: green;
+			}
+
+			#result.error {
+				color: red;
+			}
+
+		</style>
+
+		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../scripts/options.js"></script>
+
+	</head>
+	<body>
+
+		<h2>Options for jobcan-quick-stamp</h2>
+
+		<hr/>
+
+		<form id="optionsForm">
+
+			<h3>JobCan Code</h3>
+			<p>
+				http://jobcan.jp/m?code=<input type="text" id="jobcanCode" size="30">
+			</p>
+			<p class="small">
+				モバイル向けのマイページ・アクセスURLに含まれる コード文字列(英数字) を入力してください。<br/>
+				URLは「【ジョブカン】○○さん専用のアクセスURL」というメールに含まれています。<br/>
+				メールが見当たらない場合は、管理者へ問い合わせて下さい。
+			</p>
+
+			<hr/>
+
+			<h3>更新間隔</h3>
+			<p class="small">
+				1分ごとにステータスを自動取得します。<br/>
+				打刻により仕事を開始したときは、Google Chromeのツールバーに経過時間が表示されます。
+			</p>
+
+			<hr/>
+
+			<p style="float: right; margin-right: 1rem;">
+				<span id="result"></span>
+				<input type="submit" value="Save">
+			</p>
+
+		</form>
+
+	</body>
+</html>
