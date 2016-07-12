@@ -1,6 +1,8 @@
 # chrome-ext-jobcan-quick-stamp
 Chrome extension for make a stamp on [JobCan](http://jobcan.ne.jp/) (unofficial).
 
+![Screen shot](https://raw.githubusercontent.com/mugifly/chrome-ext-jobcan-quick-stamp/master/screenshot.png)
+
 ## Notice
 This is an unofficial tool for convenience of users.
 We doesn't have relationship with the company of [JobCan](http://jobcan.ne.jp/).
