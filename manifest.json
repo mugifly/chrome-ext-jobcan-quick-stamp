@@ -2,7 +2,7 @@
 	"manifest_version": 2,
 	"name": "JobCan Quick Stamp",
 	"version": "1.0.0",
-	"description": "ジョブカンでサクッと打刻するための非公式拡張機能",
+	"description": "Chrome extension for make a stamp on JobCan (unofficial)",
 	"browser_action": {
 		"default_popup": "pages/popup.html"
 	},
@@ -19,5 +19,8 @@
 		"https://ssl.jobcan.jp/m/*",
 		"storage",
 		"geolocation"
-	]
+	],
+	"icons": {
+		"128": "images/icon.png"
+	}
 }
