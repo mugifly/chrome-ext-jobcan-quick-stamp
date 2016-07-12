@@ -221,6 +221,13 @@ $(function() {
 			$('#submitBtn').removeClass('out');
 			$('#submitBtn').val('打刻しました');
 
+			// Notify to background.js
+			chrome.runtime.sendMessage({
+				evt: 'ON_STAMPED'
+			}, function(response) {
+
+			});
+
 			// Reload
 			window.setTimeout(function () {
 

@@ -112,8 +112,17 @@ $(function() {
 		chrome.storage.sync.set({
 			jobcanCode: jobcan_code
 		}, function() {
+
 			$result.addClass('success');
 			$result.html('Saved :)');
+
+			// Notify to background.js
+			chrome.runtime.sendMessage({
+				evt: 'ON_OPTIONS_UPDATED'
+			}, function(response) {
+
+			});
+
 		});
 
 	};

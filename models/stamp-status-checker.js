@@ -17,7 +17,6 @@ StampStatusChecker.prototype.fetchCurrentWorkingStartedDate = function (callback
 		success: function (data, status) {
 
 			var last_stamp_status = self._parseLastStampStatus(data);
-			console.log('fetchCurrentWorkingStartedDate', last_stamp_status);
 			if (last_stamp_status == null) {
 				callback('Could not get your status');
 			} else if (last_stamp_status.text == '入室') {
@@ -51,16 +50,19 @@ StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 	var status_text = $($columns[0]).text().replace(new RegExp('[\f\n\r\t\v ]', 'g'), '');
 
 	// Get a date
-	var start_date = null;
+	var start_date = null, now = new Date();
 	var status_time_str = $($columns[1]).text().replace(new RegExp('[\f\n\r\t\v ]', 'g'), '');
 	if (status_time_str.match(/(\d+):(\d+)/)) {
 		start_date = new Date();
-		var h = RegExp.$1, m = RegExp.$2;
+		var h = parseInt(RegExp.$1, 10), m = parseInt(RegExp.$2, 10);
 		if (24 <= h) {
 			start_date.setHours(h-24);
 			start_date.setMinutes(m);
 			start_date.setSeconds(0);
 		} else {
+			if (now.getHours() < h) {
+				start_date.setDate(start_date.getDate() - 1);
+			}
 			start_date.setHours(h);
 			start_date.setMinutes(m);
 			start_date.setSeconds(0);
