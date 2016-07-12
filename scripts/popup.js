@@ -173,7 +173,7 @@ $(function() {
 	 */
 	var sendStamp = function() {
 
-		var group_id = $('#group').val() + 0;
+		var group_id = parseInt($('#group').val());
 
 		$('#submitBtn').prop('disabled', true);
 		$('#submitBtn').val('Sending...');

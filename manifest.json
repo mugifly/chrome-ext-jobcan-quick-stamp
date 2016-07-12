@@ -22,5 +22,6 @@
 	],
 	"icons": {
 		"128": "images/icon.png"
-	}
+	},
+	"homepage_url": "https://github.com/mugifly/chrome-ext-jobcan-quick-stamp"
 }

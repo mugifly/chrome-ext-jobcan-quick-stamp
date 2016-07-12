@@ -62,7 +62,7 @@ Stamper.prototype.sendStamp = function (group_id, lat, lng, opt_note, callback) 
 			lon: lng,
 			year: now.getFullYear(),
 			month: now.getMonth() + 1,
-			day: now.getDate() + 1,
+			day: now.getDate(),
 			reason: null,
 			time: null,
 			group_id: group_id,
