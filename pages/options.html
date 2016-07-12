@@ -6,67 +6,7 @@
 
 		<title>Options for jobcan-quick-stamp</title>
 
-		<style>
-
-			/* Page */
-
-			body {
-				background-color: #fefefe;
-				color: #202020;
-				margin: 2rem;
-				font-size: 12pt;
-			}
-
-			h2, h3 {
-				margin-left: 1rem;
-			}
-
-			p {
-				margin-left: 1.5rem;
-			}
-
-			p.small {
-				font-size: 10pt;
-			}
-
-			hr {
-				border: 0.5px solid #e0e0e0;
-				margin-top: 2rem;
-				margin-bottom: 2rem;
-			}
-
-			/* Submit button */
-
-			input[type="submit"] {
-				background-color: #3498db;
-				border: none;
-				color: #fefefe;
-				font-weight: bolder;
-				font-size: 13pt;
-				padding: 0.5rem 1.5rem 0.5rem 1.5rem;
-			}
-
-			input[type="submit"]:hover {
-				cursor: pointer;
-				background-color: #2980b9;
-			}
-
-			/* Result information */
-
-			#result {
-				font-weight: bolder;
-				margin-right: 2rem;
-			}
-
-			#result.success {
-				color: green;
-			}
-
-			#result.error {
-				color: red;
-			}
-
-		</style>
+		<link rel="stylesheet" href="styles/style.css" />
 
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
 		<script src="../scripts/options.js"></script>
@@ -89,6 +29,15 @@
 				URLは「【ジョブカン】○○さん専用のアクセスURL」というメールに含まれています。<br/>
 				メールが見当たらない場合は、管理者へ問い合わせて下さい。
 			</p>
+
+			<hr/>
+
+			<h3>位置情報に基づくグループの自動選択</h3>
+
+			<h4>登録された位置情報</h4>
+			<ul id="storedLocations">
+
+			</ul>
 
 			<hr/>
 

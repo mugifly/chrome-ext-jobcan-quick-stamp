@@ -7,10 +7,7 @@
 // Declaration for allow the global objects in ESLint
 /*global chrome, StampStatusChecker*/
 
-
-$(function () {
-
-	var statusChecker = null;
+(function() {
 
 
 	/**
@@ -18,18 +15,21 @@ $(function () {
 	 */
 	var updateStatus = function () {
 
+		console.log('updateStatus');
+
 		// Get the options
 		chrome.storage.sync.get(function(options) {
 
 			if (options.jobcanCode == null) {
+				console.log('jobcanCode is null');
 				return;
 			}
 
 			// Initialize the checker
 			var status_checker = new StampStatusChecker(options.jobcanCode);
 
-			// Get the current working status
-			status_checker.getCurrentWorkingStartedDate(function (err, start_date) {
+			// Fetch the current working status
+			status_checker.fetchCurrentWorkingStartedDate(function (err, start_date) {
 
 				if (err) {
 
@@ -48,29 +48,39 @@ $(function () {
 					return;
 				}
 
-				console.log('updateStatus', start_date);
-
-				var badge_color = '#888888', badge_text = 'FREE';
+				// Make a status text
+				var badge_color = '#888888', badge_text = 'FREE', detail_status = 'Free time';
 				if (start_date != null) {
+
 					var now = new Date();
+					
 					var past_hours = (now.getTime() - start_date.getTime()) / 1000;
 					var past_sec = Math.floor(past_hours % 60); past_hours /= 60;
 					var past_minutes = Math.floor(past_hours % 60); past_hours /= 60;
 					past_hours = Math.floor(past_hours);
 
+					detail_status = 'Working - ';
+					badge_color = '#007cff';
+
 					if (10 <= past_hours) {
 						badge_text = past_hours + 'h';
+						detail_status += past_hours + ' h ' + past_minutes + ' min';
 					} else if (1 <= past_hours) {
 						badge_text = (past_hours * 60) + past_minutes + 'm';
+						detail_status += past_hours + ' h ' + past_minutes + ' min';
 					} else {
 						badge_text = past_minutes + 'm';
+						detail_status += (past_hours * 60) + past_minutes + ' min';
 					}
-					badge_color = '#007cff';
+
+					detail_status += ' from ' +
+						('0' + start_date.getHours()).slice(-2) + ':' + ('0' + start_date.getMinutes()).slice(-2);
+
 				}
 
 				// Update the title of badge
 				chrome.browserAction.setTitle({
-					title: 'jobcan-quick-stamp\nStatus: ' + badge_text
+					title: 'Jobcan Quick Stamp\n' + detail_status
 				});
 
 				// Update the badge of Chrome's toolbar
@@ -92,6 +102,7 @@ $(function () {
 	// ----
 
 	updateStatus();
-	window.setInterval(updateStatus, 6000);
+	window.setInterval(updateStatus, 30000);
 
-});
+
+})();

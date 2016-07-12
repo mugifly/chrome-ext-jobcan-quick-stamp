@@ -7,17 +7,17 @@ var StampStatusChecker = function (jobcan_code) {
 };
 
 
-StampStatusChecker.prototype.getCurrentWorkingStartedDate = function (callback) {
+StampStatusChecker.prototype.fetchCurrentWorkingStartedDate = function (callback) {
 
 	var self = this;
 
-	$.ajax({
+	jQuery.ajax({
 		url: self.url,
 		timeout: 5000,
-		success: function (data, data_type) {
+		success: function (data, status) {
 
 			var last_stamp_status = self._parseLastStampStatus(data);
-			console.log('getCurrentWorkingStartedDate', last_stamp_status);
+			console.log('fetchCurrentWorkingStartedDate', last_stamp_status);
 			if (last_stamp_status == null) {
 				callback('Could not get your status');
 			} else if (last_stamp_status.text == '入室') {

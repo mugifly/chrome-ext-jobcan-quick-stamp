@@ -4,29 +4,65 @@
 
 		<meta charset="utf-8">
 
+		<link rel="stylesheet" href="styles/style.css" />
+
 		<style>
 
-			html, body {
-				margin: 0 0 0 0;
-				overflow: hidden;
-				height: 435px;
-				width: 420px;
+			/* Clock */
+
+			#currentTime {
+				margin: 0 0 1rem 0;
+				width: 100%;
+				font-size: 20pt;
+				text-align: center;
 			}
 
-			#notice {
-				margin: 2rem;
-				font-size: 13pt;
+			/* Current location */
+
+			#currentLocation {
+				font-size: 10pt;
 			}
 
-			#jobcanFrame {
-				height: 430px;
-				width: 415px;
-				margin-top: 5px;
+			/* Form fields */
+
+			div {
+				margin-bottom: 1rem;
+			}
+
+			div label {
+				display: block;
+				font-size: 10pt;
+				font-weight: bolder;
+				margin-bottom: 0.2rem;
+			}
+
+			/* Submit button */
+
+			input[type="submit"].done {
+				background-color: #cccccc;
+			}
+
+			input[type="submit"].in {
+				background-color: #3498db;
+			}
+
+			input[type="submit"].in:hover {
+				background-color: #2980b9;
+			}
+
+			input[type="submit"].out {
+				background-color: #e74c3c;
+			}
+
+			input[type="submit"].out:hover {
+				background-color: #c0392b;
 			}
 
 		</style>
 
 		<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+		<script src="../models/stamper.js"></script>
+		<script src="../models/stamp-status-checker.js"></script>
 		<script src="../scripts/popup.js"></script>
 
 	</head>
@@ -34,7 +70,39 @@
 
 		<p id="notice">Now loading...</p>
 
-		<iframe id="jobcanFrame" frameborder="0">
+		<form id="stampForm" style="display: hide;">
+
+			<p id="currentTime"></p>
+
+			<div>
+				<label>グループ (オフィス):</label>
+				<select id="group"></select>
+			</div>
+
+			<div>
+				<label>現在地:</label>
+				<p id="currentLocation"></p>
+			</div>
+
+			<div>
+				<label>備考:</label>
+				<textarea id="note" rows="2" style="width: 100%;">
+				</textarea>
+			</div>
+
+			<div>
+				<label>位置情報に基づくグループの自動選択:</label>
+				<label style="font-weight: normal;">
+					<input id="remGroupWithLocation" type="checkbox"> この現在地とグループを記憶する
+				</label>
+			</div>
+
+			<p style="float: right; margin-top: 0px; margin-right: -5%;">
+				<span id="result"></span>
+				<input type="submit" id="submitBtn" value="打刻">
+			</p>
+
+		</form>
 
 	</body>
 </html>
