@@ -41,7 +41,15 @@ StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 	var $page = $($.parseHTML(html, document, false));
 
 	var $adits = $page.find('#adits tr');
-	if ($adits.length <= 1) return null;
+
+	if ($adits.length == 0) {
+		return null;
+	} else if ($adits.length == 1) {
+		return {
+			text: null,
+			date: null
+		};
+	}
 
 	var $item = $($adits[$adits.length - 2]);
 	var $columns = $item.find('td');
