@@ -2,7 +2,7 @@
 
 var StampStatusChecker = function (jobcan_code) {
 
-	this.url = 'https://ssl.jobcan.jp/m?code=' + jobcan_code;
+	this.url = 'https://ssl.jobcan.jp/m/work/accessrecord?_m=adit&code=' + jobcan_code;
 
 };
 
@@ -40,7 +40,8 @@ StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 
 	var $page = $($.parseHTML(html, document, false));
 
-	var $adits = $page.find('#adits tr');
+	var $tables = $page.find('table');
+	var $adits = $($tables[$tables.length - 1]).find('tr');
 
 	if ($adits.length == 0) {
 		return null;
@@ -51,7 +52,7 @@ StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 		};
 	}
 
-	var $item = $($adits[$adits.length - 2]);
+	var $item = $($adits[$adits.length - 1]);
 	var $columns = $item.find('td');
 
 	// Get a status text
@@ -59,7 +60,7 @@ StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 
 	// Get a date
 	var start_date = null, now = new Date();
-	var status_time_str = $($columns[1]).text().replace(new RegExp('[\f\n\r\t\v ]', 'g'), '');
+	var status_time_str = $($columns[2]).text().replace(new RegExp('[\f\n\r\t\v ]', 'g'), '');
 	if (status_time_str.match(/(\d+):(\d+)/)) {
 		start_date = new Date();
 		var h = parseInt(RegExp.$1, 10), m = parseInt(RegExp.$2, 10);
