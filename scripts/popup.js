@@ -222,12 +222,16 @@ $(function() {
 			$('#submitBtn').val('打刻しました');
 
 			// Notify to background.js
-			chrome.runtime.sendMessage({
-				evt: 'ON_STAMPED'
-			}, function(response) {
+			window.setTimeout(function () {
 
-			});
+				chrome.runtime.sendMessage({
+					evt: 'ON_STAMPED'
+				}, function(response) {
 
+				});
+
+			}, 1000);
+			
 			// Reload
 			window.setTimeout(function () {
 
