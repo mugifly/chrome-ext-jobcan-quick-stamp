@@ -24,6 +24,11 @@
 				return;
 			}
 
+			// Update the badge of Chrome's toolbar
+			chrome.browserAction.setBadgeText({
+				text: ''
+			});
+
 			// Initialize the checker
 			var status_checker = new StampStatusChecker(options.jobcanCode);
 

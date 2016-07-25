@@ -19,7 +19,7 @@ StampStatusChecker.prototype.fetchCurrentWorkingStartedDate = function (callback
 			var last_stamp_status = self._parseLastStampStatus(data);
 			if (last_stamp_status == null) {
 				callback('Could not get your status');
-			} else if (last_stamp_status.text == '入室') {
+			} else if (last_stamp_status.text == '入室' || last_stamp_status.text == 'Clock-in') {
 				callback(null, last_stamp_status.date);
 			} else {
 				callback(null, null);
@@ -38,17 +38,17 @@ StampStatusChecker.prototype.fetchCurrentWorkingStartedDate = function (callback
 
 StampStatusChecker.prototype._parseLastStampStatus = function(html) {
 
+	if (html.match(/認証エラー/)) return null;
+
 	var $page = $($.parseHTML(html, document, false));
 
 	var $tables = $page.find('table');
 	var $adits = $($tables[$tables.length - 1]).find('tr');
 
 	if ($adits.length == 0) {
-		return null;
-	} else if ($adits.length == 1) {
 		return {
-			text: null,
-			date: null
+			text: status_text,
+			date: start_date
 		};
 	}
 
